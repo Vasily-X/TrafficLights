@@ -19,10 +19,10 @@
 
 
 // ================================== [DEFINITIONS] ================================== //
-#define INVALID_TL_ID				-1
+#define INVALID_TL_ID					-1
 
-#define MAX_TRAFFIC_LIGHTS_TYPES	2    	
-#define MAX_TRAFFIC_LIGHTS			50
+#define MAX_TRAFFIC_LIGHTS_TYPES		2    	
+#define MAX_TRAFFIC_LIGHTS				50
 
 
 #if !defined TLC_GREEN
@@ -53,12 +53,14 @@ enum E_TL_DATA
 static TL_Data[MAX_TRAFFIC_LIGHTS][E_TL_DATA];
 static Iterator:TL_Data<MAX_TRAFFIC_LIGHTS>;
 
+// How many lights has any type of post.
 static E_TL_TYPE_AMOUNT[MAX_TRAFFIC_LIGHTS_TYPES][2] =
 {
 	{TL_TYPE_1, 2},
 	{TL_TYPE_2, 1}
 };
 
+// Lights offsets for each type of post.
 static Float:E_TL_TYPE_1_OFFSETS[6][3] =
 {
 	{-0.630000, -0.299999, 2.649999}, 	// Green  	0
@@ -73,8 +75,9 @@ static Float:E_TL_TYPE_1_OFFSETS[6][3] =
 // ================================== [HOOKED CALLBACKS] ================================== //
 hook OnGameModeInit()
 {
-	AddSimpleModel(-1, 1283, -2055, "objects/trafficlights/mtraffic1.dff", "objects/trafficlights/mitraffic.txd");
-    AddSimpleModel(-1, 19282, -2056, "objects/trafficlights/amberlight.dff", "objects/trafficlights/emptytexture.txd");
+	AddSimpleModel(-1, 1283, TL_TYPE_1, "objects/trafficlights/mtraffic1.dff", "objects/trafficlights/mitraffic.txd");
+	
+    AddSimpleModel(-1, 19282, TLC_AMBER, "objects/trafficlights/amberlight.dff", "objects/trafficlights/emptytexture.txd");
 	return Y_HOOKS_CONTINUE_RETURN_1;
 }
 
