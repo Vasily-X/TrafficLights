@@ -1,6 +1,6 @@
 /*
     TrafficLights v0.01 wrote by RIDE2DAY
-    Official thread: http://forum.sa-mp.com/showthread.php?t=642022
+    Official thread:
 
     Many thanks to:
     	- Southclaws
