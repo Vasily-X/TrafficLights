@@ -61,13 +61,23 @@ static E_TL_TYPE_AMOUNT[MAX_TRAFFIC_LIGHTS_TYPES][2] =
 
 static Float:E_TL_TYPE_1_OFFSETS[6][3] =
 {
-	{-0.630000, -0.299999, 2.649999}, // green  0
-	{-1.020000, -0.299999, 2.649999}, // amber  1
- 	{-1.410000, -0.299999, 2.649999}, // red 	2
-	{-7.300002, 0.310000, 2.649999}, // green 	3    
-	{-6.909999, 0.310000, 2.649999}, // amber 	4
-	{-6.509998, 0.310000, 2.649999} // red 		5
+	{-0.630000, -0.299999, 2.649999}, 	// Green  	0
+	{-1.020000, -0.299999, 2.649999}, 	// Amber  	1
+ 	{-1.410000, -0.299999, 2.649999}, 	// Red 		2
+	{-7.300002, 0.310000, 2.649999}, 	// Green 	3    
+	{-6.909999, 0.310000, 2.649999}, 	// Amber 	4
+	{-6.509998, 0.310000, 2.649999} 	// Red 		5
 };
+
+
+// ================================== [HOOKED CALLBACKS] ================================== //
+hook OnGameModeInit()
+{
+	AddSimpleModel(-1, 1283, -2055, "objects/trafficlights/mtraffic1.dff", "objects/trafficlights/mitraffic.txd");
+    AddSimpleModel(-1, 19282, -2056, "objects/trafficlights/amberlight.dff", "objects/trafficlights/emptytexture.txd");
+	return Y_HOOKS_CONTINUE_RETURN_1;
+}
+
 
 // ================================== [NEW FUNCTIONS] ================================== //
 stock CreateTrafficLight(modelid, Float:x, Float:y, Float:z, Float:rx, Float:ry, Float:rz, default_color = TLC_GREEN)
