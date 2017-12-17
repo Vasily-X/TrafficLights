@@ -154,20 +154,20 @@ hook OnFilterScriptInit()
 
 hook OnGameModeExit()
 {
-	if(!tl_script_unloadad)
+	if(!tl_script_unloaded)
 	{
-		tl_script_unloadad = true;
-		DestroyAllTraficLights();
+		tl_script_unloaded = true;
+		RemoveAllTraficLights();
 	}
 	return Y_HOOKS_CONTINUE_RETURN_1;
 }
 
 hook OnFilterScriptExit()
 {
-	if(!tl_script_unloadad)
+	if(!tl_script_unloaded)
 	{
-		tl_script_unloadad = true;
-		DestroyAllTraficLights();
+		tl_script_unloaded = true;
+		RemoveAllTraficLights();
 	}
 	return Y_HOOKS_CONTINUE_RETURN_1;
 }
