@@ -352,7 +352,7 @@ stock RemoveTrafficLight(idx)
 	return 1;
 }
 
-stock RemoveAllTraficLights()
+stock RemoveAllTrafficLights()
 {
 	foreach(new x : TL_Data)
 	{
