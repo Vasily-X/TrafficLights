@@ -1,6 +1,6 @@
 /*
     TrafficLights v0.01 wrote by RIDE2DAY
-    Official thread:
+    Official thread: http://forum.sa-mp.com/showthread.php?t=646429
 
     Many thanks to:
     	- Southclaws
@@ -14,8 +14,8 @@
 #define _trafficlights_included
 
 
-#include <YSI-Includes\YSI\y_hooks>
-#include <YSI-Includes\YSI\y_iterate>
+#include <YSI\y_hooks>
+#include <YSI\y_iterate>
 
 
 // ================================== [DEFINITIONS] ================================== //
