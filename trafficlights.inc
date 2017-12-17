@@ -273,6 +273,15 @@ stock SetTrafficLightColor(idx, color)
 	return 1;
 }
 
+stock GetTrafficLightColor(idx)
+{
+	if(!Iter_Contains(TL_Data, idx))
+	{
+		return 0;
+	}
+	return TL_Data[idx][tl_color];
+}
+
 stock DisableTrafficLight(idx)
 {
 	if(!Iter_Contains(TL_Data, idx))
