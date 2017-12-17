@@ -48,6 +48,9 @@
 
 
 // ================================== [VARIABLES] ================================== //
+static bool:tl_script_loaded;
+static bool:tl_script_unloaded;
+
 enum E_TL_DATA
 {
 	tl_model_id,
@@ -131,9 +134,9 @@ static Float:E_TL_OFFSETS[38][3] =
 // ================================== [HOOKED CALLBACKS] ================================== //
 hook OnGameModeInit()
 {
-	if(!tl_script_init)
+	if(!tl_script_loaded)
 	{
-		tl_script_init = true;
+		tl_script_loaded = true;
 		LoadTrafficLightsModels();
 	}
 	return Y_HOOKS_CONTINUE_RETURN_1;
@@ -141,10 +144,30 @@ hook OnGameModeInit()
 
 hook OnFilterScriptInit()
 {
-	if(!tl_script_init)
+	if(!tl_script_loaded)
 	{
-		tl_script_init = true;
+		tl_script_loaded = true;
 		LoadTrafficLightsModels();
+	}
+	return Y_HOOKS_CONTINUE_RETURN_1;
+}
+
+hook OnGameModeExit()
+{
+	if(!tl_script_unloadad)
+	{
+		tl_script_unloadad = true;
+		DestroyAllTraficLights();
+	}
+	return Y_HOOKS_CONTINUE_RETURN_1;
+}
+
+hook OnFilterScriptExit()
+{
+	if(!tl_script_unloadad)
+	{
+		tl_script_unloadad = true;
+		DestroyAllTraficLights();
 	}
 	return Y_HOOKS_CONTINUE_RETURN_1;
 }
@@ -317,6 +340,43 @@ stock RemoveTrafficLight(idx)
 	#endif
 
 	Iter_Remove(TL_Data, idx);
+	return 1;
+}
+
+stock RemoveAllTraficLights()
+{
+	foreach(new x : TL_Data)
+	{
+		DisableTrafficLight(x);
+
+		#if defined TL_USE_STREAMER
+
+			if(IsValidDynamicObject(TL_Data[x][tl_light_object][2]))
+			{
+				DestroyDynamicObject(TL_Data[x][tl_light_object][2]);
+			}
+
+			if(IsValidDynamicObject(TL_Data[x][tl_object_id]))
+			{
+				DestroyDynamicObject(TL_Data[x][tl_object_id]);
+			}
+
+		#else
+
+			if(IsValidObject(TL_Data[x][tl_light_object][2]))
+			{
+				DestroyObject(TL_Data[x][tl_light_object][2]);
+			}
+
+			if(IsValidObject(TL_Data[x][tl_object_id]))
+			{
+				DestroyObject(TL_Data[x][tl_object_id]);
+			}
+
+		#endif
+	}
+
+	Iter_Clear(TL_Data);
 	return 1;
 }
 
