@@ -1,0 +1,11 @@
+{
+    "entry": "test.pwn",
+    "output": "test.amx",
+    "dependencies": [
+        "Southclaws/samp-stdlib",
+        "Zeex/amx_assembly",
+        "Misiur/YSI-Includes",
+
+        "ScavengeSurvive/test-boilerplate"
+    ]
+}
